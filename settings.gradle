@@ -1,0 +1,2 @@
+rootProject.name='CeloAndroidTest'
+include ':app'
