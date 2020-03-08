@@ -1,5 +1,5 @@
 # CeloAndroidTest
-This is a project using MVI architecture. I tried to make it as a real project.
+This is a project using MVI architecture. UserAcitivty + UserFragment+ViewUserFragment. The project follows a lot of jetpack things.
 
 User--interacts-->Intent--changes-->State--updates-->View--seen-->User 
 
