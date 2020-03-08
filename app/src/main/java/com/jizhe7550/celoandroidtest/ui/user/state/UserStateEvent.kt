@@ -1,6 +1,8 @@
 package com.jizhe7550.celoandroidtest.ui.user.state
 
-
+/**
+ * Event trigger
+ */
 sealed class UserStateEvent {
 
     object UserSearchEvent : UserStateEvent()

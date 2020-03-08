@@ -1,6 +1,8 @@
 package com.jizhe7550.celoandroidtest.ui
 
-
+/**
+ * data classes using supporting DataState class
+ */
 data class Loading(val isLoading: Boolean)
 data class Data<T>(val data: Event<T>?, val response: Event<Response>?)
 data class StateError(val response: Response)

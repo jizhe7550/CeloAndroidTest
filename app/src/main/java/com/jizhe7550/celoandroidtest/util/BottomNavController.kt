@@ -149,8 +149,7 @@ class BottomNavController(
     }
 
     // Get id of each graph
-    // ex: R.navigation.nav_blog
-    // ex: R.navigation.nav_create_blog
+    // ex: R.navigation.nav_user
     interface NavGraphProvider {
         @NavigationRes
         fun getNavGraphId(itemId: Int): Int

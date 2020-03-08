@@ -5,9 +5,9 @@ class PreferenceKeys {
     companion object{
 
         // Shared Preference Files:
-        const val APP_PREFERENCES: String = "com.jizhe.celotest.APP_PREFERENCES"
+        const val APP_PREFERENCES: String = "com.jizhe7550.celoandroidtest.APP_PREFERENCES"
 
         // Shared Preference Keys
-        const val USER_FILTER: String = "com.jizhe..celotestUSER_FILTER"
+        const val USER_FILTER: String = "com.jizhe7550.celoandroidtest.USER_FILTER"
     }
 }

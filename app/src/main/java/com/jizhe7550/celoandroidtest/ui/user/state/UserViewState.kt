@@ -4,8 +4,11 @@ import android.os.Parcelable
 import com.jizhe7550.celoandroidtest.model.User
 import kotlinx.android.parcel.Parcelize
 
-const val USER_VIEW_STATE_BUNDLE_KEY = "com.jizhe7550.celotest.ui.user.state.BlogViewState"
+const val USER_VIEW_STATE_BUNDLE_KEY = "com.jizhe7550.celoandroidtest.ui.user.state.UserViewState"
 
+/**
+ * User module UI states
+ */
 @Parcelize
 data class UserViewState(
 

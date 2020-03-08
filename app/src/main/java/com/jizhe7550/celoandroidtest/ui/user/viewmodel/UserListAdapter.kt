@@ -13,8 +13,12 @@ import com.jizhe7550.celoandroidtest.util.DateUtils
 import com.jizhe7550.celoandroidtest.util.GenericViewHolder
 import kotlinx.android.synthetic.main.layout_user_list_item.view.*
 
+/**
+ * custom listAdapter (recyclerview adapter+diffUtil)
+ */
 class UserListAdapter(
     private val requestManager: RequestManager,
+    //callback behaviors interface
     private val interaction: Interaction? = null
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -187,8 +191,14 @@ class UserListAdapter(
 
     interface Interaction {
 
+        /**
+         * selected item
+         */
         fun onItemSelected(position: Int, item: User)
 
+        /**
+         * when activity destroy,restore the list position to show same item in UI
+         */
         fun restoreListPosition()
     }
 }

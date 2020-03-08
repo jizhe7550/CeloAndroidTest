@@ -47,10 +47,8 @@ constructor(
             false,
             true
         ) {
-            // if network is down, view cache only and return
             override suspend fun createCacheRequestAndReturn() {
                 withContext(Dispatchers.Main) {
-
                     // finishing by viewing db cache
                     val dbSource = loadFromCache()
                     result.addSource(dbSource) { viewState ->
@@ -82,7 +80,7 @@ constructor(
                             userResponse.name.first ?: "",
                             userResponse.name.last ?: "",
                             userResponse.dob.age ?: 0,
-                            DateUtils.convertServerStringDateToLong(userResponse.dob.date?:"")
+                            DateUtils.convertServerStringDateToLong(userResponse.dob.date ?: "")
                         )
                     )
                 }
@@ -102,10 +100,10 @@ constructor(
 
             override fun loadFromCache(): LiveData<UserViewState> {
                 return userDao.returnUserQuery(
-                    query = query,
-                    filter = filter,
-                    page = page
-                )
+                        query = query,
+                        filter = filter,
+                        page = page
+                    )
                     .switchMap {
                         object : LiveData<UserViewState>() {
                             override fun onActive() {
@@ -139,7 +137,7 @@ constructor(
                                             "${e.message}"
                                 )
                                 // Could send an error report here or something but I don't think you should throw an error to the UI
-                                // Since there could be many blog posts being inserted/updated.
+                                // Since there could be many users being inserted/updated.
                             }
                         }
                     }
@@ -195,10 +193,10 @@ constructor(
 
             override fun loadFromCache(): LiveData<UserViewState> {
                 return userDao.returnUserQuery(
-                    query = query,
-                    filter = filter,
-                    page = page
-                )
+                        query = query,
+                        filter = filter,
+                        page = page
+                    )
                     .switchMap {
                         object : LiveData<UserViewState>() {
                             override fun onActive() {
@@ -219,12 +217,11 @@ constructor(
             }
 
             override fun setJob(job: Job) {
-                addJob("restoreBlogListFromCache", job)
+                addJob("restoreUserListFromCache", job)
             }
 
         }.asLiveData()
     }
-
 }
 
 

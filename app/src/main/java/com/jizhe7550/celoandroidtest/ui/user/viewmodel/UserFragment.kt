@@ -60,9 +60,9 @@ class UserFragment : BaseUserFragment(),
 
     override fun onResume() {
         super.onResume()
-        if (SessionManager.isReopenApp){
+        if (SessionManager.isReopenApp) {
             viewModel.refreshFromCache()
-        }else{
+        } else {
             onUserSearchOrFilter()
             SessionManager.isReopenApp = true
         }
@@ -74,7 +74,7 @@ class UserFragment : BaseUserFragment(),
     }
 
     private fun saveLayoutManagerState() {
-        blog_post_recyclerview.layoutManager?.onSaveInstanceState()?.let { lmState ->
+        users_recyclerview.layoutManager?.onSaveInstanceState()?.let { lmState ->
             viewModel.setLayoutManagerState(lmState)
         }
     }
@@ -151,7 +151,7 @@ class UserFragment : BaseUserFragment(),
     }
 
     private fun resetUI() {
-        blog_post_recyclerview.smoothScrollToPosition(0)
+        users_recyclerview.smoothScrollToPosition(0)
         stateChangeListener.hideSoftKeyboard()
         focusable_view.requestFocus()
     }
@@ -162,7 +162,7 @@ class UserFragment : BaseUserFragment(),
         dataState.data?.let { data ->
             data.data?.let { event ->
                 event.getContentIfNotHandled()?.let { userViewState ->
-                    viewModel.handleIncomingBlogListData(userViewState)
+                    viewModel.handleIncomingUserListData(userViewState)
                 }
             }
         }
@@ -187,7 +187,7 @@ class UserFragment : BaseUserFragment(),
 
     private fun initRecyclerView() {
 
-        blog_post_recyclerview.apply {
+        users_recyclerview.apply {
             layoutManager = LinearLayoutManager(this@UserFragment.context)
             val topSpacingDecorator = TopSpacingItemDecoration(30)
             removeItemDecoration(topSpacingDecorator) // does nothing if not applied already
@@ -237,14 +237,14 @@ class UserFragment : BaseUserFragment(),
 
     override fun restoreListPosition() {
         viewModel.viewState.value?.userFields?.layoutManagerState?.let { lmState ->
-            blog_post_recyclerview?.layoutManager?.onRestoreInstanceState(lmState)
+            users_recyclerview?.layoutManager?.onRestoreInstanceState(lmState)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         // clear references (can leak memory)
-        blog_post_recyclerview.adapter = null
+        users_recyclerview.adapter = null
     }
 
     override fun onRefresh() {
@@ -253,7 +253,6 @@ class UserFragment : BaseUserFragment(),
     }
 
     private fun showFilterDialog() {
-
         activity?.let {
             val dialog = MaterialDialog(it)
                 .noAutoDismiss()

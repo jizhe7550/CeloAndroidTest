@@ -4,7 +4,9 @@ import android.util.Log
 import com.jizhe7550.celoandroidtest.ui.user.state.UserStateEvent.*
 import com.jizhe7550.celoandroidtest.ui.user.state.UserViewState
 
-
+/**
+ * manage UserViewModel pagination behaviors
+ */
 fun UserViewModel.resetPage(){
     val update = getCurrentViewStateOrNew()
     update.userFields.page = 1
@@ -42,7 +44,7 @@ fun UserViewModel.nextPage(){
     }
 }
 
-fun UserViewModel.handleIncomingBlogListData(viewState: UserViewState){
+fun UserViewModel.handleIncomingUserListData(viewState: UserViewState){
     Log.d(TAG, "UserViewModel, DataState: ${viewState}")
     Log.d(TAG, "UserViewModel, DataState: isQueryInProgress?: " +
             "${viewState.userFields.isQueryInProgress}")
@@ -50,7 +52,7 @@ fun UserViewModel.handleIncomingBlogListData(viewState: UserViewState){
             "${viewState.userFields.isQueryExhausted}")
     setQueryInProgress(viewState.userFields.isQueryInProgress)
     setQueryExhausted(viewState.userFields.isQueryExhausted)
-    setBlogListData(viewState.userFields.userList)
+    setUserListData(viewState.userFields.userList)
 }
 
 

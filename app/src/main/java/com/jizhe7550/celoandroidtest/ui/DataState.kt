@@ -1,6 +1,8 @@
 package com.jizhe7550.celoandroidtest.ui
 
-
+/**
+ * maintain generic data states
+ */
 data class DataState<T>(
     var error: Event<StateError>? = null,
     var loading: Loading = Loading(false),

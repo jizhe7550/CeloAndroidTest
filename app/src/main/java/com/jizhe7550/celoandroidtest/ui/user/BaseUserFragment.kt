@@ -18,8 +18,7 @@ import com.jizhe7550.celoandroidtest.ui.UICommunicationListener
 import com.jizhe7550.celoandroidtest.ui.user.state.USER_VIEW_STATE_BUNDLE_KEY
 import com.jizhe7550.celoandroidtest.ui.user.state.UserViewState
 
-abstract class BaseUserFragment : Fragment(), Injectable
-{
+abstract class BaseUserFragment : Fragment(), Injectable {
 
     val TAG: String = "AppDebug"
 
@@ -44,7 +43,7 @@ abstract class BaseUserFragment : Fragment(), Injectable
                 this,
                 dependencyProvider.getVMProviderFactory()
             ).get(UserViewModel::class.java)
-        }?: throw Exception("Invalid Activity")
+        } ?: throw Exception("Invalid Activity")
 
         cancelActiveJobs()
 
@@ -56,18 +55,18 @@ abstract class BaseUserFragment : Fragment(), Injectable
         }
     }
 
-    fun cancelActiveJobs(){
+    fun cancelActiveJobs() {
         viewModel.cancelActiveJobs()
     }
 
     fun isViewModelInitialized() = ::viewModel.isInitialized
 
     /**
-     * !IMPORTANT!
+     *
      * Must save ViewState b/c in event of process death the LiveData in ViewModel will be lost
      */
     override fun onSaveInstanceState(outState: Bundle) {
-        if(isViewModelInitialized()){
+        if (isViewModelInitialized()) {
             val viewState = viewModel.viewState.value
 
             //clear the list. Don't want to save a large list to bundle.
@@ -84,7 +83,7 @@ abstract class BaseUserFragment : Fragment(), Injectable
     /*
           @fragmentId is id of fragment from graph to be EXCLUDED from action back bar nav
         */
-    private fun setupActionBarWithNavController(fragmentId: Int, activity: AppCompatActivity){
+    private fun setupActionBarWithNavController(fragmentId: Int, activity: AppCompatActivity) {
         val appBarConfiguration = AppBarConfiguration(setOf(fragmentId))
         NavigationUI.setupActionBarWithNavController(
             activity,
@@ -95,22 +94,22 @@ abstract class BaseUserFragment : Fragment(), Injectable
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        try{
+        try {
             stateChangeListener = context as DataStateChangeListener
-        }catch(e: ClassCastException){
-            Log.e(TAG, "$context must implement DataStateChangeListener" )
+        } catch (e: ClassCastException) {
+            Log.e(TAG, "$context must implement DataStateChangeListener")
         }
 
-        try{
+        try {
             uiCommunicationListener = context as UICommunicationListener
-        }catch(e: ClassCastException){
-            Log.e(TAG, "$context must implement UICommunicationListener" )
+        } catch (e: ClassCastException) {
+            Log.e(TAG, "$context must implement UICommunicationListener")
         }
 
-        try{
+        try {
             dependencyProvider = context as UserDependencyProvider
-        }catch(e: ClassCastException){
-            Log.e(TAG, "$context must implement DependencyProvider" )
+        } catch (e: ClassCastException) {
+            Log.e(TAG, "$context must implement DependencyProvider")
         }
     }
 }

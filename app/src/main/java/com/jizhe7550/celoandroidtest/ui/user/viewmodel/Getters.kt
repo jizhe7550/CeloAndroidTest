@@ -2,7 +2,9 @@ package com.jizhe7550.celoandroidtest.ui.user.viewmodel
 
 import com.jizhe7550.celoandroidtest.model.User
 
-
+/**
+ * manage UserViewModel get methods
+ */
 fun UserViewModel.getFilter(): String {
     getCurrentViewStateOrNew().let {
         return it.userFields.filter
@@ -15,7 +17,7 @@ fun UserViewModel.getSearchQuery(): String {
     }
 }
 
-fun UserViewModel.getPage(): Int{
+fun UserViewModel.getPage(): Int {
     getCurrentViewStateOrNew().let {
         return it.userFields.page
     }
@@ -26,12 +28,12 @@ fun UserViewModel.getUser(): User {
     getCurrentViewStateOrNew().let { userViewState ->
         return userViewState.viewUserFields.user?.let {
             return it
-        }?: getDummyUser()
+        } ?: getDummyUser()
     }
 }
 
 fun UserViewModel.getDummyUser(): User {
-    return User("","","","","" ,"" ,"","","","",0,1)
+    return User("", "", "", "", "", "", "", "", "", "", 0, 1)
 }
 
 

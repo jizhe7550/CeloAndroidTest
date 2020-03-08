@@ -22,6 +22,9 @@ constructor(
     private val editor: SharedPreferences.Editor
 ) : BaseViewModel<UserStateEvent, UserViewState>() {
 
+    /**
+     * once user setfilter will record and load same setting at beginning
+     */
     init {
         setUserFilter(
             sharedPreferences.getString(

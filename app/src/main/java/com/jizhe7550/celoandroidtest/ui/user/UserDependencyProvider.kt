@@ -7,8 +7,8 @@ import com.jizhe7550.celoandroidtest.viewmodelutil.ViewModelProviderFactory
  * Provides app-level dependencies to various BaseFragments:
  * eg BaseUserFragment
  *
- * Must do this because of process death issue and restoring state.
- * Why?
+ * when process death and restoring state.
+ *
  * Can't set values that were saved in instance state to ViewModel because Viewmodel
  * hasn't been created yet when onCreate is called.
  */

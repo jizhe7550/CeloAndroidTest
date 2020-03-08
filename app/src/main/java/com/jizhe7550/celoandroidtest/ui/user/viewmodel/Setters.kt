@@ -3,13 +3,16 @@ package com.jizhe7550.celoandroidtest.ui.user.viewmodel
 import android.os.Parcelable
 import com.jizhe7550.celoandroidtest.model.User
 
+/**
+ * manage UserViewModel set methods
+ */
 fun UserViewModel.setQuery(query: String){
     val update = getCurrentViewStateOrNew()
     update.userFields.searchQuery = query
     setViewState(update)
 }
 
-fun UserViewModel.setBlogListData(userList: List<User>){
+fun UserViewModel.setUserListData(userList: List<User>){
     val update = getCurrentViewStateOrNew()
     update.userFields.userList = userList
     setViewState(update)

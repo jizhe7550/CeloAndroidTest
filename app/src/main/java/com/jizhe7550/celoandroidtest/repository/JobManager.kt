@@ -3,6 +3,9 @@ package com.jizhe7550.celoandroidtest.repository
 import android.util.Log
 import kotlinx.coroutines.Job
 
+/**
+ * help repositories to manage their jobs
+ */
 open class JobManager(
     private val className: String
 ) {

@@ -17,7 +17,12 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 
 /**
- * This class regulates the solution
+ * NetworkBoundResource regulates the solution of handling network logical
+ *
+ * ResponseObject api response result
+ * CacheObject db cache
+ * ViewStateType viewState
+ *
  */
 abstract class NetworkBoundResource<ResponseObject, CacheObject, ViewStateType>
     (
@@ -155,6 +160,10 @@ abstract class NetworkBoundResource<ResponseObject, CacheObject, ViewStateType>
         result.value = dataState
     }
 
+    /**
+     * create a new job to handle the network task
+     * if job cancel or complete, invokeOnCompletion will invoke
+     */
     @OptIn(InternalCoroutinesApi::class)
     private fun initNewJob(): Job {
         Log.d(TAG, "initNewJob: called.")
@@ -187,18 +196,39 @@ abstract class NetworkBoundResource<ResponseObject, CacheObject, ViewStateType>
         return job
     }
 
+    /**
+     * return LiveData<DataState<ViewStateType>> that we want.
+     */
     fun asLiveData() = result as LiveData<DataState<ViewStateType>>
 
+    /**
+     * if network is down, view cache only and return
+     */
     abstract suspend fun createCacheRequestAndReturn()
 
+    /**
+     * when createCall success, handle data
+     */
     abstract suspend fun handleApiSuccessResponse(response: ApiSuccessResponse<ResponseObject>)
 
+    /**
+     * call retrofit api
+     */
     abstract fun createCall(): LiveData<GenericApiResponse<ResponseObject>>
 
+    /**
+     * loadCache behavior, such db
+     */
     abstract fun loadFromCache(): LiveData<ViewStateType>
 
+    /**
+     * once api finish and success, update db
+     */
     abstract suspend fun updateLocalDb(cacheObject: CacheObject?)
 
+    /**
+     * set a job that job manager can manage it
+     */
     abstract fun setJob(job: Job)
 
 }
