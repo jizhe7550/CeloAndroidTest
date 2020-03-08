@@ -8,7 +8,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.jizhe7550.celoandroidtest.R
 import com.jizhe7550.celoandroidtest.ui.BaseActivity
 import com.jizhe7550.celoandroidtest.viewmodelutil.ViewModelProviderFactory
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_user.*
 import javax.inject.Inject
 
 class UserActivity : BaseActivity(),
@@ -38,7 +38,7 @@ class UserActivity : BaseActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_user)
 
         setupActionBar()
     }
